@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr-FR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Numéros d'urgence</title>
+  <meta itemprop="name" name="application-name" content="Numéros d'urgence - France">
+  <meta name="robots" content="index,follow">
+  <meta itemprop="description" name="description" content="Contacter les numéros d'urgence rapidement en ajoutant cette app directement sur le bureau de votre smartphone">
+  <meta name="image" content="">
+  <!-- Schema.org for Google -->
+  <meta itemprop="image" content="">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Numéros d'urgence - France">
+  <meta name="twitter:description" content="Contacter les numéros d'urgence rapidement en ajoutant cette app directement sur le bureau de votre smartphone">
+  <meta name="twitter:image:src" content="">
+  <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+  <meta property="og:title" content="Numéros d'urgence - France">
+  <meta property="og:description" content="Contacter les numéros d'urgence rapidement en ajoutant cette app directement sur le bureau de votre smartphone">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="https://urgences.devlint.fr">
+  <meta property="og:site_name" content="Numéros d'urgence - France">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:type" content="website">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="urgence.webmanifest">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#f10000">
+  <meta name="apple-mobile-web-app-title" content="URGENCE">
+  <meta name="application-name" content="URGENCE">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+	* {
+		box-sizing: border-box;
+	}
+    html{
+		font-family: sans-serif;
+	}
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	header{
+		background: #2f3542;
+		color: white;
+		height: 15vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		line-height: 1;
+		border-bottom: 5px dashed white;
+	}
+	header h1{
+		margin: 0;
+		text-transform: uppercase;
+		font-size: 1.8rem;
+	}
+	main{
+		height: 85vh;
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 42px;
+	}
+	main a{
+		display: flex;
+		padding: 20px;
+		text-transform: uppercase;
+		flex: 1;
+		align-items: center;
+		font-size: 1.8rem;
+		font-weight: 700;
+		line-height: 1;
+		text-decoration: none;
+	}
+	main div{
+		margin: 0 10px 0 0;
+		background: white;
+		border-radius: 50%;
+		padding: 1rem;
+		width: 120px;
+		height: 120px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	main p{
+		text-align: center;
+		flex: 1;
+	}
+	.samu{
+		background: #f1f2f6;
+		color: #2f3542;
+	}
+	.police{
+		background: #1e3799;
+		color: white;
+	}
+	.pompier{
+		background: #eb2f06;
+		color: white;
+	}
+	footer{ 
+		position: fixed;
+		z-index: -1;
+		bottom:0;left:0;right:0;
+		color: #2f3542;
+		font-size: 0.7rem;
+		text-align: center;
+		padding: 1rem 0 0.5rem;
+		line-height: 1;
+		
+	}
+	footer a{
+		color: inherit;
+	}
+  </style>
+</head>
+<body>
+<header>
+  <h1>En cas d'urgence</h1>
+</header>
+<main id="main">
+	<a class="police" href="tel:17">
+		<div class="img"><img src="img/police.svg" width="80"></div>
+		<p>Police <br> 17</p>
+	</a>
+	<a class="samu" href="tel:15">
+		<div class="img"><img src="img/samu.svg" width="80"></div>
+		<p>SAMU <br> 15</p>
+	</a>
+	<a class="pompier" href="tel:15">
+		<div class="img"><img src="img/pompier.svg" width="80"></div>
+		<p>Pompier <br> 18</p>
+	</a>
+</main>
+<footer>
+	Mis à disposition par <a href="https://twitter.com/webdevlint">@webdevlint</a> <br>
+	Icônes fournies par <a href="https://www.flaticon.com">https://www.flaticon.com</a>
+</footer>
+<script>
+  window.addEventListener('load', function() {
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(function (reg) {
+          if (!navigator.serviceWorker.controller) {
+            return
+          }
+          reg.addEventListener('updatefound', function () {
+            const newWorker = reg.installing;
+            newWorker.state;
+
+            let refreshing;
+
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'activated') {
+                if (refreshing) return;
+                window.location.reload();
+                refreshing = true;
+              }
+            });
+          });
+        });
+    }
+    window.addEventListener("beforeinstallprompt", function(e) {
+      e.userChoice.then(function(outcome) {
+        //console.log(outcome);
+      });
+    });
+  });
+</script>
+</body>
+</html>
