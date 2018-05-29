@@ -7,3 +7,6 @@ Contacter les numéros d'urgence rapidement en ajoutant cette app directement su
 Une simple page (#pwa - mode offline via les services workers) éducative pour permettre aux enfants de mémoriser les différents numéros de téléphone des urgences et de les appeler rapidement.
 
 _Vous êtes libre de télécharger, utiliser ou modifier le code pour vous l'approprier ;-)_
+
+
+![capture](https://pbs.twimg.com/media/DeT-QBYXUAAz6Eu.jpg:large)
